@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';   // ← ensures Tailwind (and any global rules) are included
+import '../styles/global.css';  // ← ensures Tailwind + your globals are applied
 const { title } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -8,23 +8,30 @@ const { title } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <!-- AOS CSS for animations -->
+    <!-- AOS CSS -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      integrity="sha512-Ho+g/Y1R3e1wqn44qP/7Z4oxhc3YgQ0TLhMsYGdnJxicqOgHT34DwRIpfs9CD3W0YcZ7+2z3V/mW8X24Md4UHQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
   </head>
   <body class="bg-gray-900 text-gray-100 antialiased">
     <slot />
 
     <!-- AOS JS -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+      integrity="sha512-G0PT+PXDQyuebRAdcapN8GYYoNEt+wMZJ1CY/BRfqvUHv+vqwoRCL0LlW1yDThOK9L7bFCGep6wb5P2l+XkgAQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        AOS.init({
-          once: true,
-          offset: 50,
-        });
+      // Initialize AOS after the script loads
+      AOS.init({
+        once: true,   // animate only once
+        offset: 50,   // start trigger 50px before element
       });
     </script>
   </body>
