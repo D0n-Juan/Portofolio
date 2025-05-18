@@ -1,6 +1,4 @@
 ---
-// src/layouts/Layout.astro
-// Props: title (string)
 const { title } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -9,9 +7,23 @@ const { title } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <!-- Tailwind already injected via your build; if you have any globals, keep them here -->
+    <!-- AOS CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
+    />
   </head>
   <body class="bg-gray-900 text-gray-100 antialiased">
     <slot />
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        AOS.init({
+          once: true,          // animate only once
+          offset: 50,          // start animation 50px from element
+        });
+      });
+    </script>
   </body>
 </html>
